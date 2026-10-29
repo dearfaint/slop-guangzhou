@@ -1,5 +1,7 @@
 # Slop Guangzhou · 广州珠江新城
 
+**简体中文** | [English](README.en.md)
+
 基于 Three.js、WebGPU / WebGL 2 和真实地理数据的广州珠江新城 3D 城市漫游，参考并适配 [Slop New York](https://github.com/mrdoob/slop-newyork)。
 
 **[在线体验](https://blessxu.cn/project/zhujiang-city/)** · [GitHub](https://github.com/dearfaint/slop-guangzhou)
