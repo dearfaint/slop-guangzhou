@@ -1,0 +1,467 @@
+[
+  {
+    "id": "person-1",
+    "label": "青年男性",
+    "gender": 1,
+    "age": 0.33,
+    "weight": 0.46,
+    "muscle": 0.52,
+    "height": 1.78,
+    "skin": "young_asian_male",
+    "hair": "short04",
+    "outfit": "male_casualsuit06",
+    "topColor": "#9eb7cb",
+    "group": "adult",
+    "near": "person-1-near.glb",
+    "far": "person-1-far.glb",
+    "nearStats": {
+      "bytes": 525788,
+      "triangles": 23310,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 62448,
+      "triangles": 1468,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "id": "person-2",
+    "label": "青年女性",
+    "gender": 0,
+    "age": 0.31,
+    "weight": 0.43,
+    "muscle": 0.4,
+    "height": 1.65,
+    "skin": "young_asian_female",
+    "hair": "bob02",
+    "outfit": "male_casualsuit06",
+    "topColor": "#e4dfd2",
+    "group": "adult",
+    "near": "person-2-near.glb",
+    "far": "person-2-far.glb",
+    "nearStats": {
+      "bytes": 538856,
+      "triangles": 24601,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 59868,
+      "triangles": 1406,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "id": "person-3",
+    "label": "中年男性",
+    "gender": 1,
+    "age": 0.65,
+    "weight": 0.58,
+    "muscle": 0.47,
+    "height": 1.74,
+    "skin": "middleage_asian_male",
+    "hair": "short01",
+    "outfit": "male_casualsuit03",
+    "topColor": "#697563",
+    "group": "adult",
+    "near": "person-3-near.glb",
+    "far": "person-3-far.glb",
+    "nearStats": {
+      "bytes": 649536,
+      "triangles": 23100,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61996,
+      "triangles": 1463,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "id": "person-4",
+    "label": "中年女性",
+    "gender": 0,
+    "age": 0.63,
+    "weight": 0.53,
+    "muscle": 0.37,
+    "height": 1.61,
+    "skin": "middleage_asian_female",
+    "hair": "ponytail01",
+    "outfit": "female_elegantsuit01",
+    "topColor": "#b68480",
+    "group": "adult",
+    "near": "person-4-near.glb",
+    "far": "person-4-far.glb",
+    "nearStats": {
+      "bytes": 591444,
+      "triangles": 25543,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61656,
+      "triangles": 1475,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "男孩 · 夏装",
+    "gender": 1,
+    "age": 0.12,
+    "weight": 0.45,
+    "muscle": 0.3,
+    "height": 1.12,
+    "skin": "young_asian_male",
+    "hair": "short04",
+    "topColor": "#e6b653",
+    "group": "family",
+    "shorts": true,
+    "footwear": "sneakers",
+    "bottomColor": "#526a7b",
+    "id": "person-5",
+    "outfit": "male_casualsuit06",
+    "near": "person-5-near.glb",
+    "far": "person-5-far.glb",
+    "nearStats": {
+      "bytes": 568612,
+      "triangles": 28646,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 6,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61428,
+      "triangles": 1460,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "女孩 · 夏装",
+    "gender": 0,
+    "age": 0.14,
+    "weight": 0.45,
+    "muscle": 0.28,
+    "height": 1.18,
+    "skin": "young_asian_female",
+    "hair": "ponytail01",
+    "topColor": "#c48997",
+    "group": "family",
+    "shorts": true,
+    "footwear": "sneakers",
+    "bottomColor": "#b7b6a3",
+    "id": "person-6",
+    "outfit": "male_casualsuit06",
+    "near": "person-6-near.glb",
+    "far": "person-6-far.glb",
+    "nearStats": {
+      "bytes": 651896,
+      "triangles": 33266,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 6,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61576,
+      "triangles": 1459,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "老伯 · 日常",
+    "gender": 1,
+    "age": 0.92,
+    "weight": 0.5,
+    "muscle": 0.35,
+    "height": 1.68,
+    "skin": "old_asian_male",
+    "hair": "short01",
+    "topColor": "#b8c1b2",
+    "group": "family",
+    "hairColor": [
+      0.42,
+      0.43,
+      0.42
+    ],
+    "id": "person-7",
+    "outfit": "male_casualsuit06",
+    "near": "person-7-near.glb",
+    "far": "person-7-far.glb",
+    "nearStats": {
+      "bytes": 618072,
+      "triangles": 26146,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61112,
+      "triangles": 1436,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "阿婆 · 日常",
+    "gender": 0,
+    "age": 0.91,
+    "weight": 0.52,
+    "muscle": 0.32,
+    "height": 1.56,
+    "skin": "old_asian_female",
+    "hair": "bob02",
+    "topColor": "#9b86a7",
+    "group": "family",
+    "hairColor": [
+      0.38,
+      0.39,
+      0.38
+    ],
+    "id": "person-8",
+    "outfit": "male_casualsuit06",
+    "near": "person-8-near.glb",
+    "far": "person-8-far.glb",
+    "nearStats": {
+      "bytes": 534724,
+      "triangles": 24601,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 6,
+      "images": 7,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 59584,
+      "triangles": 1395,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "青年男 · 短裤拖鞋",
+    "gender": 1,
+    "age": 0.35,
+    "weight": 0.5,
+    "muscle": 0.5,
+    "height": 1.76,
+    "skin": "young_asian_male",
+    "hair": "short04",
+    "topColor": "#e0c895",
+    "group": "summer",
+    "shorts": true,
+    "footwear": "slippers",
+    "bottomColor": "#657984",
+    "id": "person-9",
+    "outfit": "male_casualsuit06",
+    "near": "person-9-near.glb",
+    "far": "person-9-far.glb",
+    "nearStats": {
+      "bytes": 560480,
+      "triangles": 30425,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 7,
+      "images": 5,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 64276,
+      "triangles": 1556,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "青年女 · 短裤拖鞋",
+    "gender": 0,
+    "age": 0.33,
+    "weight": 0.46,
+    "muscle": 0.4,
+    "height": 1.65,
+    "skin": "young_asian_female",
+    "hair": "bob02",
+    "hairColor": [
+      0.035,
+      0.025,
+      0.018
+    ],
+    "topColor": "#d2e1d7",
+    "group": "summer",
+    "shorts": true,
+    "footwear": "slippers",
+    "bottomColor": "#b1a18a",
+    "id": "person-10",
+    "outfit": "male_casualsuit06",
+    "near": "person-10-near.glb",
+    "far": "person-10-far.glb",
+    "nearStats": {
+      "bytes": 574540,
+      "triangles": 31705,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 7,
+      "images": 5,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 61392,
+      "triangles": 1493,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "老伯 · 短裤拖鞋",
+    "gender": 1,
+    "age": 0.94,
+    "weight": 0.57,
+    "muscle": 0.3,
+    "height": 1.66,
+    "skin": "old_asian_male",
+    "hair": "short01",
+    "topColor": "#bfc4b4",
+    "group": "summer",
+    "shorts": true,
+    "footwear": "slippers",
+    "bottomColor": "#666c6e",
+    "hairColor": [
+      0.5,
+      0.51,
+      0.5
+    ],
+    "keys": true,
+    "id": "person-11",
+    "outfit": "male_casualsuit06",
+    "near": "person-11-near.glb",
+    "far": "person-11-far.glb",
+    "nearStats": {
+      "bytes": 653012,
+      "triangles": 33257,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 7,
+      "images": 5,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 62896,
+      "triangles": 1521,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  },
+  {
+    "label": "阿婆 · 短裤拖鞋",
+    "gender": 0,
+    "age": 0.92,
+    "weight": 0.53,
+    "muscle": 0.3,
+    "height": 1.55,
+    "skin": "old_asian_female",
+    "hair": "ponytail01",
+    "topColor": "#c68c86",
+    "group": "summer",
+    "shorts": true,
+    "footwear": "slippers",
+    "bottomColor": "#565f72",
+    "hairColor": [
+      0.4,
+      0.41,
+      0.4
+    ],
+    "keys": true,
+    "id": "person-12",
+    "outfit": "male_casualsuit06",
+    "near": "person-12-near.glb",
+    "far": "person-12-far.glb",
+    "nearStats": {
+      "bytes": 643932,
+      "triangles": 35056,
+      "animations": [
+        "Walk",
+        "Idle"
+      ],
+      "meshes": 7,
+      "images": 5,
+      "vertexColors": false
+    },
+    "farStats": {
+      "bytes": 64068,
+      "triangles": 1547,
+      "animations": [],
+      "meshes": 1,
+      "images": 0,
+      "vertexColors": true
+    }
+  }
+]

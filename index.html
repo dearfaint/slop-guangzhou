@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eef1e9"><title>珠江新城 · 城市漫游</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23263f3e'/%3E%3Cpath d='M16 48V26h10v22m7 0V12h14v36' stroke='%23c5dfb4' stroke-width='4' fill='none'/%3E%3C/svg%3E"><style>
+#boot{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#fffef9,#efeee5);color:#17513f;font-family:system-ui,sans-serif}#boot[hidden]{display:none}.boot-card{text-align:center;width:min(340px,80vw)}.boot-card .boot-brand{width:min(300px,76vw);margin:0 auto 32px}.boot-brand img{display:block;width:112px;height:112px;object-fit:contain;margin:0 auto 16px}.boot-brand strong{display:block;color:#17513f;font-size:24px;font-weight:650;letter-spacing:-.02em}.boot-card h1{font-size:32px;letter-spacing:.03em;margin:0 0 28px}.boot-platform{font-size:12px;color:#6c796f;margin:-12px 0 24px}.boot-card progress{display:block;appearance:none;width:100%;height:4px;border:0;background:#d9ded4;border-radius:4px;overflow:hidden}.boot-card progress::-webkit-progress-bar{background:#d9ded4}.boot-card progress::-webkit-progress-value{background:#e7c45b}.boot-card progress::-moz-progress-bar{background:#e7c45b}.boot-card p{font-size:13px;color:#6c796f;min-height:36px;line-height:1.7;margin:16px 0 0}#boot-retry{margin-top:18px;background:#ffc21b;color:#121416;border:0;border-radius:6px;padding:10px 22px;font:inherit;cursor:pointer}
+</style></head>
+<body aria-busy="true">
+<div id="boot" role="status" aria-live="polite"><div class="boot-card"><div class="boot-brand"><img src="./brand/blessxu-logo.webp" alt="" width="112" height="112" fetchpriority="high"><strong>BlessXu Studio</strong></div><h1>珠江新城</h1><div class="boot-platform">PC 端访问效果最佳</div><progress id="boot-progress" max="100" value="0" aria-label="城市加载进度"></progress><p id="boot-message">正在初始化城市漫游…</p><button id="boot-retry" hidden onclick="location.reload()">重新加载</button></div></div>
+<div id="canvas-container"><canvas id="city" aria-label="广州三维城市场景"></canvas></div>
+  <svg class="icon-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.4" r="2"/><path d="M12.3 8.2 10.8 13.8M10.8 13.8 9.2 17.2 7.2 20.5M10.8 13.8l2.4 3 1.6 3.8M12.3 8.6 9.6 10.2l-.8 2.6M12.3 8.6l2.1 2.4 2.4.8"/></symbol>
+      <symbol id="i-car" viewBox="0 0 24 24"><path d="M9.6 4.8V3.4a.6.6 0 0 1 .6-.6h3.6a.6.6 0 0 1 .6.6v1.4"/><path d="m5.2 10.5 1.4-4.1A2.2 2.2 0 0 1 8.7 4.8h6.6a2.2 2.2 0 0 1 2.1 1.6l1.4 4.1"/><rect x="3" y="10.5" width="18" height="6.5" rx="2"/><path d="M6 17v2.6M18 17v2.6M6.6 13.8h1.6M15.8 13.8h1.6"/></symbol>
+      <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.5" cy="16.5" r="3.6"/><circle cx="18.5" cy="16.5" r="3.6"/><path d="M5.5 16.5 9.3 9.6h6.3M11.6 16.5 9.3 9.6M11.6 16.5l4-6.9M5.5 16.5h6.1M15.6 9.6l2.9 6.9M15.6 9.6 14.8 7h2.4M8 8.4h2.8"/></symbol>
+      <symbol id="i-heli" viewBox="0 0 24 24"><path d="M3.5 4h15M11 4v3.2"/><path d="M6 12.2a5 5 0 0 1 5-5h1.6a4.4 4.4 0 0 1 4.4 4.4V15H8.8A2.8 2.8 0 0 1 6 12.2z"/><path d="M17 11h4.2M21.2 8.8v4.4M7 19h10.5M9.5 15v4M15 15v4"/></symbol>
+      <symbol id="i-golden" viewBox="0 0 24 24"><path d="M3 17.5h18M7 17.5a5 5 0 0 1 10 0M12 5v3M5.6 9.6l2 1.6M18.4 9.6l-2 1.6M7.5 21h9"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5 7 7M17 17l1.5 1.5M5.5 18.5 7 17M17 7l1.5-1.5"/></symbol>
+      <symbol id="i-twilight" viewBox="0 0 24 24"><path d="M3 15.5h18M7.5 19h9M8 15.5a4 4 0 0 1 8 0M17.5 4v3.2M15.9 5.6h3.2M7 7.4v1.8M6.1 8.3h1.8"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.2s-6.6-5.7-6.6-11.2a6.6 6.6 0 0 1 13.2 0c0 5.5-6.6 11.2-6.6 11.2z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.6v13l5.5-2.1 6 2.1 5.5-2.1v-13L15 6.6 9 4.5zM9 4.5v13M15 6.6v13"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3.5 3.5l17 17M10.6 5.6c.5-.1.9-.1 1.4-.1 6 0 9.5 6.5 9.5 6.5a16 16 0 0 1-2.4 3.2M6.6 6.6A15.6 15.6 0 0 0 2.5 12s3.5 6.5 9.5 6.5c1.6 0 3.1-.4 4.4-1.1M9.9 9.9a2.8 2.8 0 0 0 4.2 4.2"/></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-5 4H3v8h3l5 4V4ZM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="m11 4-5 4H3v8h3l5 4V4ZM16 9l6 6M22 9l-6 6"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m7 9.5 5 5 5-5"/></symbol>
+      <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M14.5 6.5 9 12l5.5 5.5"/></symbol>
+      <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><rect x="2.8" y="6.5" width="12.4" height="11" rx="2.4"/><path d="m15.2 10.4 6-3.4v10l-6-3.4"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5.5v13M5.5 12h13"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5.5 12h13"/></symbol>
+      <symbol id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.4"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><path d="M12 2.5v3.1M12 18.4v3.1M2.5 12h3.1M18.4 12h3.1"/></symbol>
+      <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m20 20-4.6-4.6"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="hud hud-top-left">
+    <div class="panel brand">
+      <span class="mta-bullet" aria-hidden="true">穗</span>
+      <div class="brand-titles">
+        <div class="brand-heading">
+          <h1>珠江新城</h1>
+          <a class="repo-link" href="https://github.com/dearfaint/slop-guangzhou" target="_blank" rel="noopener noreferrer" aria-label="Slop Guangzhou 的开源代码">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="brand-subtitle">three.js · WebGPU · TSL · <span id="hud-fps" class="fps-ok">60</span> fps</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top-Right Toolbar: Time of Day, Teleport, Map & Clean View -->
+  <div class="hud hud-top-right">
+    <div id="hud-toolbar" class="panel toolbar">
+      <select id="touch-time" class="touch-only" aria-label="场景时间"><option value="midday">☀ 白天</option><option value="golden">☀ 黄昏</option><option value="twilight">☾ 蓝调</option><option value="midnight">☾ 夜晚</option></select>
+      <div class="time-switch" role="group" aria-label="Atmosphere &amp; time of day">
+        <button id="time-golden" class="time-btn" data-time="golden" type="button" title="Golden Hour">
+          <svg class="icon" aria-hidden="true"><use href="#i-golden"/></svg><span class="seg-label">黄昏</span>
+        </button>
+        <button id="time-midday" class="time-btn active" data-time="midday" type="button" title="Sunny Midday">
+          <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg><span class="seg-label">白天</span>
+        </button>
+        <button id="time-twilight" class="time-btn" data-time="twilight" type="button" title="Blue Hour">
+          <svg class="icon" aria-hidden="true"><use href="#i-twilight"/></svg><span class="seg-label">蓝调</span>
+        </button>
+        <button id="time-midnight" class="time-btn" data-time="midnight" type="button" title="Night 23:00">
+          <svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg><span class="seg-label">夜晚</span>
+        </button>
+      </div>
+      <span class="toolbar-divider" aria-hidden="true"></span>
+      <button id="btn-teleport" class="tool-btn" type="button" popovertarget="teleport-popover" title="Teleport the active player">
+        <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span class="tool-label">传送</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+      </button>
+      <button id="btn-open-map" class="tool-btn" type="button" title="广州地图 [Tab / M]" aria-keyshortcuts="Tab M">
+        <svg class="icon" aria-hidden="true"><use href="#i-map"/></svg><span class="tool-label">地图</span><kbd>Tab</kbd>
+      </button>
+      <span class="toolbar-divider" aria-hidden="true"></span>
+      <button id="btn-sound" class="tool-btn icon-only" type="button" title="Mute sound [N]" aria-label="Mute sound" aria-pressed="true">
+        <svg class="icon" aria-hidden="true"><use href="#i-sound"/></svg>
+      </button>
+      <button id="btn-toggle-hud" class="tool-btn icon-only" type="button" title="Clean view: hide the HUD [H]" aria-label="Hide HUD" aria-pressed="false">
+        <svg class="icon icon-hide" aria-hidden="true"><use href="#i-eye"/></svg><svg class="icon icon-show" aria-hidden="true"><use href="#i-eye-off"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Teleport Destinations (native popover: light-dismiss & Esc) -->
+  <div id="teleport-popover" class="popover" popover data-side="below" data-anchor="hud-toolbar"><div class="pop-title">传送到广州地标</div><div id="landmarks"></div></div>
+
+<!-- Bottom-Left: Street-Name Signs & Live GPS Radar Minimap -->
+  <div class="hud hud-bottom-left">
+    <div id="hud-location" class="location" aria-live="off"><span id="hud-location-name"></span><span id="hud-location-coordinates"></span></div>
+    <aside id="minimap-card" class="panel radar" aria-label="广州城市小地图" title="打开广州地图 [Tab / M]">
+      <div class="map-atlas-header"><div><strong>广州街道地图</strong><small id="map-atlas-hint">Tab 开关 · 点击定位 · 拖动平移 · 滚轮缩放</small></div><button id="map-close" aria-label="关闭地图">关闭 <kbd>Esc</kbd></button></div>
+      <canvas id="minimap" width="440" height="440" tabindex="0" role="button" aria-label="广州街道雷达，点击展开地图"></canvas>
+      <span class="radar-north" aria-hidden="true">N</span>
+      <kbd class="radar-key">M</kbd>
+      <div class="map-atlas-tools"><button id="map-zoom-out" aria-label="缩小地图">−</button><button id="map-zoom-in" aria-label="放大地图">+</button><button id="map-center-player">我的位置</button><button id="map-view-all">查看全图</button></div>
+    </aside>
+    <small class="map-attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture</a></small>
+  </div>
+
+  <!-- Bottom-Center: Third-Person Mode Switcher & Controls Guide -->
+  <footer class="hud hud-bottom-center">
+    <div id="hud-controls-hint" class="controls-hint"></div>
+    <nav id="mode-switch" class="panel mode-switch" aria-label="Third-Person Navigation Mode">
+      <span class="mode-indicator" aria-hidden="true"></span>
+      <button id="mode-person" class="mode-btn" data-travel="walk" aria-pressed="false" type="button" title="Person [1]">
+        <svg class="icon" aria-hidden="true"><use href="#i-walk"/></svg><span class="mode-label">步行</span><kbd>1</kbd>
+      </button>
+      <button id="mode-car" class="mode-btn active" data-travel="car" aria-pressed="true" type="button" title="Car · Yellow Cab [2]">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span class="mode-label">驾驶</span><kbd>2</kbd>
+      </button>
+      <button id="mode-cyclist" class="mode-btn" data-travel="bike" aria-pressed="false" type="button" title="Cyclist [3]">
+        <svg class="icon" aria-hidden="true"><use href="#i-bike"/></svg><span class="mode-label">骑行</span><kbd>3</kbd>
+      </button>
+      <button id="mode-helicopter" class="mode-btn" data-travel="balloon" aria-pressed="false" type="button" title="Helicopter [4]">
+        <svg class="icon" aria-hidden="true"><use href="#i-heli"/></svg><span class="mode-label">飞行</span><kbd>4</kbd>
+      </button>
+    </nav>
+  </footer>
+
+  <!-- Bottom-Right: Speed Cluster & Camera Switcher -->
+  <div class="hud hud-bottom-right">
+    <section id="hud-cluster" class="panel cluster" aria-label="Vehicle telemetry and camera">
+      <div class="gauge">
+        <div class="gauge-top">
+          <span id="hud-active-mode" class="gauge-label">城市出租车</span>
+          <span class="gauge-alt"><span class="gauge-alt-label">Alt</span> <span id="hud-altitude">0</span> ft</span>
+        </div>
+        <div class="gauge-speed"><span id="hud-speed">0</span><span class="gauge-unit">mph</span></div>
+        <div class="gauge-meter" aria-hidden="true"><span id="hud-speed-meter"></span></div>
+      </div>
+      <div id="camera-switch" class="camera-switch">
+        <button id="cam-prev" class="icon-btn" type="button" title="Previous camera" aria-label="Previous camera">
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+        </button>
+        <button id="cam-menu-btn" class="camera-current" type="button" popovertarget="camera-popover" title="All cameras [V cycles]">
+          <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span id="hud-active-camera">第三人称跟随</span><kbd>V</kbd>
+        </button>
+        <button id="cam-next" class="icon-btn" type="button" title="Next camera [V]" aria-label="Next camera">
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <div id="camera-popover" class="popover" popover data-side="above" data-anchor="hud-cluster" data-align="hud-cluster" aria-label="Multiple Camera Angles">
+    <div class="pop-title">跟随视角</div>
+    <button id="cam-chase" class="pop-item cam-btn active" data-camera="chase" type="button"><span class="pop-name">第三人称跟随</span><kbd>5</kbd></button>
+    <button id="cam-action" class="pop-item cam-btn" data-camera="action" type="button"><span class="pop-name">低角度跟随</span><kbd>6</kbd></button>
+    <button id="cam-pov" class="pop-item cam-btn" data-camera="pov" type="button"><span class="pop-name">第一人称 / 驾驶舱</span><kbd>7</kbd></button>
+    <div class="pop-title">城市视角</div>
+    <button id="cam-cantonTop" class="pop-item cam-btn" data-camera="cantonTop" type="button"><span class="pop-name">广州塔顶 · 俯瞰全城</span></button>
+    <button id="cam-centralPark" class="pop-item cam-btn" data-camera="centralPark" type="button"><span class="pop-name">花城广场中轴</span></button>
+    <button id="cam-fifthAve" class="pop-item cam-btn" data-camera="fifthAve" type="button"><span class="pop-name">广州双塔</span><kbd>8</kbd></button>
+    <button id="cam-timesSquare" class="pop-item cam-btn" data-camera="timesSquare" type="button"><span class="pop-name">城市街区</span><kbd>9</kbd></button>
+    <button id="cam-chryslerGCT" class="pop-item cam-btn" data-camera="chryslerGCT" type="button"><span class="pop-name">大剧院与图书馆</span><kbd>0</kbd></button>
+    <button id="cam-observatory" class="pop-item cam-btn" data-camera="observatory" type="button"><span class="pop-name">东塔观景</span></button>
+    <button id="cam-bryantPark" class="pop-item cam-btn" data-camera="bryantPark" type="button"><span class="pop-name">花城广场与博物馆</span></button>
+    <button id="cam-waterfront" class="pop-item cam-btn" data-camera="waterfront" type="button"><span class="pop-name">珠江天际线</span></button>
+    <button id="cam-pearlPark" class="pop-item cam-btn" data-camera="pearlPark" type="button"><span class="pop-name">珠江公园全景</span></button>
+    <button id="cam-drone" class="pop-item cam-btn" data-camera="drone" type="button"><span class="pop-name">自动航拍</span></button>
+  </div>
+
+
+  <section id="touch-controls" aria-label="Touch controls" hidden>
+    <div class="touch-movement">
+      <div id="touch-stick" role="group" aria-label="Movement joystick: drag up or down to move, left or right to turn">
+        <span class="touch-stick-axis" aria-hidden="true"></span>
+        <span id="touch-stick-knob" aria-hidden="true"></span>
+      </div>
+      <span class="touch-caption">移动和转向</span>
+    </div>
+    <p class="touch-look-hint">拖动观察 · 滚动缩放</p>
+    <div class="touch-actions" role="group" aria-label="Hold to perform an action">
+      <button class="touch-action" data-touch-action="up" type="button" aria-label="Jump" aria-pressed="false" hidden>
+        <span aria-hidden="true">↑</span><span data-touch-label="up">跳跃</span>
+      </button>
+      <button class="touch-action" data-touch-action="down" type="button" aria-label="下降" aria-pressed="false" hidden>
+        <span aria-hidden="true">↓</span><span data-touch-label="down">下降</span>
+      </button>
+      <button class="touch-action touch-boost" data-touch-action="boost" type="button" aria-label="加速" aria-pressed="false">
+        <span aria-hidden="true">↟</span><span data-touch-label="boost">加速</span>
+      </button>
+    </div>
+  </section>
+
+
+<button id="show-hud" class="panel tool-btn" hidden aria-label="显示操作界面">显示界面 H</button>
+<div id="legacy-controls" hidden><header><a class="brand" href="./"><span class="brand-mark">珠</span><span class="brand-name">珠江新城<small>ZHUJIANG NEW TOWN</small></span></a><div class="hud"><section class="metrics" aria-label="实时性能"><div><strong id="fps">—</strong><span>FPS</span></div><div><strong id="calls">—</strong><span>绘制</span></div><div><strong id="tiles">—</strong><span>分块</span></div><div><strong id="size">—</strong><span>KB</span></div><button id="metrics-more" aria-expanded="false" aria-controls="performance-detail" aria-label="展开性能详情">＋</button><p id="performance-detail" hidden></p></section><details class="scene-settings"><summary>设置</summary><div class="scene-settings-content"><section class="time-controls" aria-label="城市时间"><div><strong id="clock">12:00</strong><span class="segmented"><button data-hour="12">白天</button><button data-hour="18">黄昏</button><button data-hour="22">夜晚</button></span></div><label>时间 <input id="time" aria-label="城市时间" type="range" min="0" max="23.99" step=".05" value="12"></label><label><input id="cycle" type="checkbox">自动昼夜</label></section><section class="view-controls" aria-label="视角与声音"><div class="height-row"><label for="height">镜头高度 <output id="height-value">—</output></label><input id="height" aria-label="镜头高度" type="range" min="120" max="3000" step="10" value="1600"><button id="reset" aria-label="重置视角">↺ 重置</button></div><button id="sound-toggle" aria-pressed="false" title="开启引擎、脚步、自行车、警笛、信号提示与风声">声音：关</button></section><p id="life-count">正在生成街景…</p><p class="hint">拖动旋转 · 滚轮缩放 · 右键平移 · WASD 移动</p></div></details><button id="about-open" class="quiet">关于</button></div></header>
+<main>
+<div class="scene-status" role="status"><span id="load-status">正在读取城市数据…</span><span id="selection">花城广场 · 中轴全景</span></div>
+<div class="compass" aria-label="指北针"><span>N</span><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 8L39 43L30 36L21 43Z" fill="currentColor"/><circle cx="30" cy="30" r="27" fill="none" stroke="currentColor" opacity=".25"/></svg></div>
+<nav class="mode-dock" aria-label="漫游控制"><button id="mode-orbit" aria-pressed="true">全览</button><button id="mode-walk" aria-pressed="false">进入漫游</button><button id="mode-tour" aria-pressed="false">城市观光</button><button id="rotate" aria-pressed="false">自动环绕</button></nav>
+<div class="walk-hud" hidden id="walk-hud"><span class="crosshair">＋</span><div class="walk-dock"><p class="walk-tips"><span id="travel-help">WASD 移动 · 拖动看向</span><output id="walk-position"></output></p><div class="walk-bar" role="toolbar" aria-label="漫游控制"><div class="seg travel-modes" role="group" aria-label="出行方式"><button data-legacy-travel="car" aria-pressed="true">汽车</button><button data-legacy-travel="walk" aria-pressed="false">步行</button><button data-legacy-travel="bike" aria-pressed="false">自行车</button><button data-legacy-travel="balloon" aria-pressed="false">热气球</button></div><label class="walk-speed"><span id="speed-label">步行速度</span><input id="walk-speed" aria-label="步行速度" type="range" min=".8" max="3" step=".1" value="1.4"><output id="speed-value">1.4 m/s</output></label><button id="pointer-lock" class="walk-tool" title="锁定后移动鼠标即可看向，Esc 解锁">锁定鼠标</button><button id="walk-exit" class="walk-exit">退出漫游<kbd>Esc</kbd></button></div></div><div class="walk-pad" aria-label="触屏行走"><button data-move="KeyW" aria-label="向前">↑</button><div><button data-move="KeyA" aria-label="向左">←</button><button data-move="KeyS" aria-label="向后">↓</button><button data-move="KeyD" aria-label="向右">→</button></div></div></div>
+<div class="altitude-pad" hidden id="altitude-pad"><button data-move="KeyE" aria-label="热气球上升">升 ↑</button><button data-move="KeyQ" aria-label="热气球下降">降 ↓</button></div>
+<div class="corner"><aside class="places" aria-label="地标导航"><button id="places-toggle" class="corner-btn" aria-expanded="false" aria-controls="places-content">地标 <span id="places-action">＋</span></button><div id="places-content" class="pop" hidden><div id="legacy-landmarks"></div><button id="overview" class="overview">↗ 返回中轴全景</button></div></aside></div>
+<aside class="minimap-float" aria-label="城市小地图"><canvas id="legacy-minimap" width="440" height="440" tabindex="0" role="button" aria-label="点击地图跳转"></canvas><span id="map-mode" class="map-label">全览焦点</span></aside>
+<div id="error" role="alert" hidden></div>
+</main>
+<footer><span class="attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture Maps Foundation</a></span><span id="backend">初始化渲染器</span></footer>
+</div>
+<dialog id="about"><button id="about-close" aria-label="关闭数据说明">×</button><div class="eyebrow">DATA & SOURCES</div><h2>让城市回到真实坐标。</h2><p>建筑与道路来自公开地理数据。双塔、三处文化建筑、广州塔，以及珠江城、富力盈凯、利通广场、富力中心、合景国际金融广场、凯华国际中心、丽思卡尔顿酒店、高德置地四广场和第二少年宫已用专用几何体重建主要外形，其余建筑仍为轮廓挤出与示意立面。已按 OSM 树列数据补充行道树，单棵间距与树高为估算。已加入沿源道路运动的车辆、沿步道行走的行人及周期信号灯；交通信号灯、车道标线、斑马线和停止线由道路宽度及路口拓扑推测，非逐灯或逐线实测；停止线与车辆停车距离使用同一路口尺度。公园植被和路灯由真实公园、道路推导，种类、间距与尺寸为估算。</p><p>海心沙已补充看台、帆塔、东区低层建筑、连接桥及海心桥结构。平面采用现有地图源轮廓；建筑名称对应、立面、桥面高度与部分结构节点为近似，尚未逐栋实测。</p><div id="data-summary">正在获取数据清单…</div><p>部分建筑轮廓源自 Qian Shi et al., <a href="https://doi.org/10.5281/zenodo.8174931" target="_blank" rel="noreferrer">East Asian Buildings (2023)</a>，CC BY 4.0，经 Overture 分发。此版本已裁剪、简化并补充高度。</p><p>WGS84 → 本地米制坐标。X 向东，Y 向上，Z 向南。数据以 600 米网格分块加载，离开区域后卸载。</p><p>高度来源区分原始高度、楼层推算和统一 18 米估算；未接入 GlobalBuildingAtlas / CNBH-10m。地标位置来自 OSM / Overture 数据；二十处建筑按照片、设计方资料和高度来源做近似重建，部分退台、截面、立面尺寸尚未实测；广州图书馆高度采用日建设计公布的 50 米；高德夏、秋广场与第二少年宫部分高度仍为估算。尚未完成全区域逐栋核验。</p><p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OSM / ODbL 1.0</a> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noreferrer">Overture 数据许可与署名</a> · <a href="https://github.com/mrdoob/slop-newyork" target="_blank" rel="noreferrer">参考 Slop New York / MIT</a></p><small>性能数字来自当前设备。JS 堆内存并非 GPU 内存；首次可见时间不等于全部区域加载时间。</small></dialog>
+
+<script type="module" src="/src/main.ts"></script>
+</body></html>

@@ -1,0 +1,15 @@
+import type {BufferGeometry,MeshStandardNodeMaterial} from 'three/webgpu';
+export const BODY_SPECS:any;
+export function buildCarGeometry(spec:any,wheels?:boolean):BufferGeometry;
+export function buildCarProxyGeometry(spec:any):BufferGeometry;
+export function buildSteerableWheelGeo(spec:any,side:number):BufferGeometry;
+export function createLoftedCarMaterial(spec:any,paint?:number):MeshStandardNodeMaterial;
+export function buildHelicopterBodyGeometry():BufferGeometry;
+export function buildHelicopterMainRotorGeometry():BufferGeometry;
+export function buildHelicopterTailRotorGeometry():BufferGeometry;
+export function createLoftedHelicopterMaterial():MeshStandardNodeMaterial;
+export const BUS_SPEC:any;
+export function buildLoftedBusBodyGeometry():BufferGeometry;
+export function buildBusWheelGeo(side:number):BufferGeometry;
+export function createLoftedBusMaterial():MeshStandardNodeMaterial;
+export function createBusWheelMaterial():MeshStandardNodeMaterial;

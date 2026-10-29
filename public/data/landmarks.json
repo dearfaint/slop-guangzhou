@@ -1,0 +1,164 @@
+[
+  {
+    "name": "花城广场",
+    "en": "HUACHENG SQUARE",
+    "lon": 113.31918166701945,
+    "lat": 23.12258124932064,
+    "h": 0,
+    "description": "地理骨架",
+    "source": "osm/243319596"
+  },
+  {
+    "name": "东塔 · 周大福中心",
+    "en": "CTF FINANCE CENTRE",
+    "lon": 113.32058514681961,
+    "lat": 23.120208706092143,
+    "h": 530,
+    "description": "退台塔身 · 陶土竖框",
+    "source": "osm/511404889"
+  },
+  {
+    "name": "西塔 · 国际金融中心",
+    "en": "GUANGZHOU IFC",
+    "lon": 113.31789967126709,
+    "lat": 23.120273493345245,
+    "h": 438.6,
+    "description": "曲面三角塔身 · 斜交网格",
+    "source": "overture/ebcbae5c-e7d2-4c9c-ba55-a7dd62155113"
+  },
+  {
+    "name": "广州大剧院",
+    "en": "GUANGZHOU OPERA HOUSE",
+    "lon": 113.31702753840946,
+    "lat": 23.11787699750424,
+    "h": 43,
+    "description": "双砾石外壳 · 近似重建",
+    "source": "overture/ab0b520c-05f1-4280-a640-ea203386401d"
+  },
+  {
+    "name": "广东省博物馆",
+    "en": "GUANGDONG MUSEUM",
+    "lon": 113.32141870640496,
+    "lat": 23.117417293087836,
+    "h": 45,
+    "description": "悬挑宝盒 · 深灰与红色凹槽",
+    "source": "osm/240896442"
+  },
+  {
+    "name": "广州图书馆",
+    "en": "GUANGZHOU LIBRARY",
+    "lon": 113.32066080364278,
+    "lat": 23.118909269067558,
+    "h": 50,
+    "description": "双体量 · 水平石材层次",
+    "source": "osm/240896441"
+  },
+  {
+    "name": "广州塔",
+    "en": "CANTON TOWER",
+    "lon": 113.31914629729789,
+    "lat": 23.109012607188284,
+    "h": 600,
+    "description": "扭转镂空网架 · 观景舱与天线",
+    "source": "overture/8a3ca89e-d721-4d1b-845d-945cbd7dd969"
+  },
+  {
+    "name": "富力中心",
+    "en": "R&F CENTRE",
+    "lon": 113.31643181869167,
+    "lat": 23.119903663523615,
+    "h": 243,
+    "description": "内凹立面 · 水平层带 · 镂空冠部",
+    "source": "overture/cae83468-6e87-4089-977c-03c91e65a486/0"
+  },
+  {
+    "name": "合景国际金融广场",
+    "en": "INTERNATIONAL FINANCE PLACE",
+    "lon": 113.31653546719104,
+    "lat": 23.119097652934602,
+    "h": 198,
+    "description": "双帆曲面 · 高低斜切冠部",
+    "source": "osm/way/926991930/0"
+  },
+  {
+    "name": "凯华国际中心",
+    "en": "KAIHUA INTERNATIONAL CENTER",
+    "lon": 113.3218316194609,
+    "lat": 23.11971347542244,
+    "h": 252,
+    "description": "竖向框架 · 顶部凹口 · 商业裙楼",
+    "source": "overture/f05380cb-5b20-498d-85a3-dc77810bc376/0"
+  },
+  {
+    "name": "丽思卡尔顿酒店",
+    "en": "THE RITZ-CARLTON",
+    "lon": 113.32181978826787,
+    "lat": 23.119014373044546,
+    "h": 181.5,
+    "description": "弧形冠部 · 金属竖肋 · 低层裙楼",
+    "source": "overture/bf208fc3-9595-4424-9851-a57e2f4ac584/0"
+  },
+  {
+    "name": "高德置地 · 春广场",
+    "en": "GT LAND SPRING",
+    "lon": 113.31686420183877,
+    "lat": 23.122876473784473,
+    "h": 184.7,
+    "description": "春广场 · 弧形A塔与低层B塔",
+    "source": "overture/122a79c8-342d-4f12-a9b2-418bc51ad991/0"
+  },
+  {
+    "name": "高德置地 · 夏广场",
+    "en": "GT LAND SUMMER",
+    "lon": 113.31801168419088,
+    "lat": 23.123137015595436,
+    "h": 99,
+    "description": "夏广场 · 双体量与曲面幕墙 · 高度估算",
+    "source": "overture/0768887d-1341-4dfd-a52a-050952ab5e80/0"
+  },
+  {
+    "name": "高德置地 · 秋广场",
+    "en": "GT LAND AUTUMN",
+    "lon": 113.32035635938605,
+    "lat": 23.12286293554251,
+    "h": 99,
+    "description": "秋广场 · E/F体量与水平层带 · 高度估算",
+    "source": "overture/cd0bcffd-2108-4524-a167-5584bef48db2/0"
+  },
+  {
+    "name": "高德置地 · 冬北塔",
+    "en": "GT LAND WINTER NORTH",
+    "lon": 113.32192384883355,
+    "lat": 23.123164134964828,
+    "h": 206.8,
+    "description": "冬广场北塔 · 竖向分段与顶部框架",
+    "source": "osm/way/589994629/0"
+  },
+  {
+    "name": "高德置地 · 冬南塔",
+    "en": "GT LAND WINTER SOUTH",
+    "lon": 113.32190124398224,
+    "lat": 23.12212858399034,
+    "h": 282.8,
+    "description": "冬广场南塔 · 卓美亚综合体",
+    "source": "osm/way/589994630/0"
+  },
+  {
+    "name": "高德置地 · 冬西楼",
+    "en": "GT LAND WINTER WEST",
+    "lon": 113.32109255531287,
+    "lat": 23.122767733340723,
+    "h": 71.9,
+    "description": "冬广场西侧低楼 · 平台层次",
+    "source": "osm/way/589994628/0"
+  },
+  {
+    "name": "广州市第二少年宫",
+    "en": "SECOND YOUTH PALACE",
+    "lon": 113.31770738080677,
+    "lat": 23.11908574523568,
+    "h": 34.5,
+    "description": "第二少年宫 · 弧形银色外墙与玻璃圆塔 · 高度待核",
+    "source": "overture/21996fbf-f70f-427c-a984-48080c459f60/0"
+  }
+]

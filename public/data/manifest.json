@@ -1,0 +1,679 @@
+{
+  "provenance": {
+    "s0": [
+      {
+        "dataset": "doi:10.5281/zenodo.8174931",
+        "version": "2024-11-01",
+        "license": null
+      }
+    ],
+    "s1": [
+      {
+        "dataset": "OpenStreetMap",
+        "version": "2026-09-06T00:00:00.000Z",
+        "license": "ODbL-1.0"
+      }
+    ]
+  },
+  "version": 1,
+  "origin": [
+    113.322,
+    23.119
+  ],
+  "bbox": [
+    113.305,
+    23.103,
+    113.337,
+    23.133
+  ],
+  "tileSize": 600,
+  "tiles": [
+    {
+      "id": "-3_-3-c3ab0d85",
+      "center": [
+        -1500.0,
+        -1500.0
+      ],
+      "bounds": [
+        -1800,
+        -1800,
+        -1200,
+        -1200
+      ],
+      "bytes": 92012,
+      "buildings": 75,
+      "roads": 121
+    },
+    {
+      "id": "-3_-2-aa71b453",
+      "center": [
+        -1500.0,
+        -900.0
+      ],
+      "bounds": [
+        -1800,
+        -1200,
+        -1200,
+        -600
+      ],
+      "bytes": 69782,
+      "buildings": 126,
+      "roads": 62
+    },
+    {
+      "id": "-3_-1-aac675ea",
+      "center": [
+        -1500.0,
+        -300.0
+      ],
+      "bounds": [
+        -1800,
+        -600,
+        -1200,
+        0
+      ],
+      "bytes": 113282,
+      "buildings": 131,
+      "roads": 134
+    },
+    {
+      "id": "-3_0-d935a9a8",
+      "center": [
+        -1500.0,
+        300.0
+      ],
+      "bounds": [
+        -1800,
+        0,
+        -1200,
+        600
+      ],
+      "bytes": 54138,
+      "buildings": 88,
+      "roads": 57
+    },
+    {
+      "id": "-3_1-0e035eed",
+      "center": [
+        -1500.0,
+        900.0
+      ],
+      "bounds": [
+        -1800,
+        600,
+        -1200,
+        1200
+      ],
+      "bytes": 38596,
+      "buildings": 7,
+      "roads": 63
+    },
+    {
+      "id": "-3_2-1929380c",
+      "center": [
+        -1500.0,
+        1500.0
+      ],
+      "bounds": [
+        -1800,
+        1200,
+        -1200,
+        1800
+      ],
+      "bytes": 62731,
+      "buildings": 98,
+      "roads": 56
+    },
+    {
+      "id": "-2_-3-e5addeb8",
+      "center": [
+        -900.0,
+        -1500.0
+      ],
+      "bounds": [
+        -1200,
+        -1800,
+        -600,
+        -1200
+      ],
+      "bytes": 83968,
+      "buildings": 108,
+      "roads": 97
+    },
+    {
+      "id": "-2_-2-3d8244b6",
+      "center": [
+        -900.0,
+        -900.0
+      ],
+      "bounds": [
+        -1200,
+        -1200,
+        -600,
+        -600
+      ],
+      "bytes": 110536,
+      "buildings": 71,
+      "roads": 158
+    },
+    {
+      "id": "-2_-1-41d129c3",
+      "center": [
+        -900.0,
+        -300.0
+      ],
+      "bounds": [
+        -1200,
+        -600,
+        -600,
+        0
+      ],
+      "bytes": 127230,
+      "buildings": 88,
+      "roads": 182
+    },
+    {
+      "id": "-2_0-73ced443",
+      "center": [
+        -900.0,
+        300.0
+      ],
+      "bounds": [
+        -1200,
+        0,
+        -600,
+        600
+      ],
+      "bytes": 81859,
+      "buildings": 36,
+      "roads": 128
+    },
+    {
+      "id": "-2_1-03368fec",
+      "center": [
+        -900.0,
+        900.0
+      ],
+      "bounds": [
+        -1200,
+        600,
+        -600,
+        1200
+      ],
+      "bytes": 40768,
+      "buildings": 13,
+      "roads": 58
+    },
+    {
+      "id": "-2_2-71f3cc86",
+      "center": [
+        -900.0,
+        1500.0
+      ],
+      "bounds": [
+        -1200,
+        1200,
+        -600,
+        1800
+      ],
+      "bytes": 70877,
+      "buildings": 125,
+      "roads": 65
+    },
+    {
+      "id": "-1_-3-b15db19e",
+      "center": [
+        -300.0,
+        -1500.0
+      ],
+      "bounds": [
+        -600,
+        -1800,
+        0,
+        -1200
+      ],
+      "bytes": 78119,
+      "buildings": 95,
+      "roads": 93
+    },
+    {
+      "id": "-1_-2-5a165d5c",
+      "center": [
+        -300.0,
+        -900.0
+      ],
+      "bounds": [
+        -600,
+        -1200,
+        0,
+        -600
+      ],
+      "bytes": 93553,
+      "buildings": 58,
+      "roads": 154
+    },
+    {
+      "id": "-1_-1-6fbe89c9",
+      "center": [
+        -300.0,
+        -300.0
+      ],
+      "bounds": [
+        -600,
+        -600,
+        0,
+        0
+      ],
+      "bytes": 130014,
+      "buildings": 54,
+      "roads": 222
+    },
+    {
+      "id": "-1_0-f9b8921a",
+      "center": [
+        -300.0,
+        300.0
+      ],
+      "bounds": [
+        -600,
+        0,
+        0,
+        600
+      ],
+      "bytes": 49258,
+      "buildings": 21,
+      "roads": 80
+    },
+    {
+      "id": "-1_1-c421f72d",
+      "center": [
+        -300.0,
+        900.0
+      ],
+      "bounds": [
+        -600,
+        600,
+        0,
+        1200
+      ],
+      "bytes": 49491,
+      "buildings": 48,
+      "roads": 61
+    },
+    {
+      "id": "-1_2-9195e224",
+      "center": [
+        -300.0,
+        1500.0
+      ],
+      "bounds": [
+        -600,
+        1200,
+        0,
+        1800
+      ],
+      "bytes": 60563,
+      "buildings": 56,
+      "roads": 81
+    },
+    {
+      "id": "0_-3-9aa065aa",
+      "center": [
+        300.0,
+        -1500.0
+      ],
+      "bounds": [
+        0,
+        -1800,
+        600,
+        -1200
+      ],
+      "bytes": 93192,
+      "buildings": 147,
+      "roads": 92
+    },
+    {
+      "id": "0_-2-f898f5fd",
+      "center": [
+        300.0,
+        -900.0
+      ],
+      "bounds": [
+        0,
+        -1200,
+        600,
+        -600
+      ],
+      "bytes": 183910,
+      "buildings": 527,
+      "roads": 84
+    },
+    {
+      "id": "0_-1-e51aff7f",
+      "center": [
+        300.0,
+        -300.0
+      ],
+      "bounds": [
+        0,
+        -600,
+        600,
+        0
+      ],
+      "bytes": 106717,
+      "buildings": 75,
+      "roads": 163
+    },
+    {
+      "id": "0_0-325de58a",
+      "center": [
+        300.0,
+        300.0
+      ],
+      "bounds": [
+        0,
+        0,
+        600,
+        600
+      ],
+      "bytes": 70714,
+      "buildings": 86,
+      "roads": 89
+    },
+    {
+      "id": "0_1-d209c36f",
+      "center": [
+        300.0,
+        900.0
+      ],
+      "bounds": [
+        0,
+        600,
+        600,
+        1200
+      ],
+      "bytes": 10619,
+      "buildings": 9,
+      "roads": 13
+    },
+    {
+      "id": "0_2-86799252",
+      "center": [
+        300.0,
+        1500.0
+      ],
+      "bounds": [
+        0,
+        1200,
+        600,
+        1800
+      ],
+      "bytes": 36148,
+      "buildings": 75,
+      "roads": 26
+    },
+    {
+      "id": "1_-3-ddcdac44",
+      "center": [
+        900.0,
+        -1500.0
+      ],
+      "bounds": [
+        600,
+        -1800,
+        1200,
+        -1200
+      ],
+      "bytes": 72262,
+      "buildings": 144,
+      "roads": 67
+    },
+    {
+      "id": "1_-2-222fc631",
+      "center": [
+        900.0,
+        -900.0
+      ],
+      "bounds": [
+        600,
+        -1200,
+        1200,
+        -600
+      ],
+      "bytes": 83650,
+      "buildings": 112,
+      "roads": 100
+    },
+    {
+      "id": "1_-1-065e8d25",
+      "center": [
+        900.0,
+        -300.0
+      ],
+      "bounds": [
+        600,
+        -600,
+        1200,
+        0
+      ],
+      "bytes": 82288,
+      "buildings": 95,
+      "roads": 103
+    },
+    {
+      "id": "1_0-4d658176",
+      "center": [
+        900.0,
+        300.0
+      ],
+      "bounds": [
+        600,
+        0,
+        1200,
+        600
+      ],
+      "bytes": 51356,
+      "buildings": 47,
+      "roads": 69
+    },
+    {
+      "id": "1_1-7850898e",
+      "center": [
+        900.0,
+        900.0
+      ],
+      "bounds": [
+        600,
+        600,
+        1200,
+        1200
+      ],
+      "bytes": 32866,
+      "buildings": 54,
+      "roads": 30
+    },
+    {
+      "id": "1_2-e4cd6c1b",
+      "center": [
+        900.0,
+        1500.0
+      ],
+      "bounds": [
+        600,
+        1200,
+        1200,
+        1800
+      ],
+      "bytes": 74107,
+      "buildings": 134,
+      "roads": 80
+    },
+    {
+      "id": "2_-3-5e42de0a",
+      "center": [
+        1500.0,
+        -1500.0
+      ],
+      "bounds": [
+        1200,
+        -1800,
+        1800,
+        -1200
+      ],
+      "bytes": 94241,
+      "buildings": 239,
+      "roads": 73
+    },
+    {
+      "id": "2_-2-f31f524b",
+      "center": [
+        1500.0,
+        -900.0
+      ],
+      "bounds": [
+        1200,
+        -1200,
+        1800,
+        -600
+      ],
+      "bytes": 24648,
+      "buildings": 52,
+      "roads": 18
+    },
+    {
+      "id": "2_-1-b493a13f",
+      "center": [
+        1500.0,
+        -300.0
+      ],
+      "bounds": [
+        1200,
+        -600,
+        1800,
+        0
+      ],
+      "bytes": 30933,
+      "buildings": 36,
+      "roads": 36
+    },
+    {
+      "id": "2_0-3a9904a3",
+      "center": [
+        1500.0,
+        300.0
+      ],
+      "bounds": [
+        1200,
+        0,
+        1800,
+        600
+      ],
+      "bytes": 39275,
+      "buildings": 54,
+      "roads": 39
+    },
+    {
+      "id": "2_1-eb338fee",
+      "center": [
+        1500.0,
+        900.0
+      ],
+      "bounds": [
+        1200,
+        600,
+        1800,
+        1200
+      ],
+      "bytes": 15314,
+      "buildings": 37,
+      "roads": 13
+    },
+    {
+      "id": "2_2-df3126b2",
+      "center": [
+        1500.0,
+        1500.0
+      ],
+      "bounds": [
+        1200,
+        1200,
+        1800,
+        1800
+      ],
+      "bytes": 16932,
+      "buildings": 50,
+      "roads": 11
+    }
+  ],
+  "stats": {
+    "landmarks": 20,
+    "replacedLandmarkRecords": 51,
+    "buildings": 3271,
+    "Overture": 3217,
+    "estimatedHeight": 2716,
+    "sourceHeight": 555,
+    "OSM": 54,
+    "roads": 2978,
+    "areas": 288,
+    "treeRows": 10,
+    "jsonBytes": 2525949,
+    "gzipBytes": 467644
+  },
+  "sources": {
+    "OSM": "https://www.openstreetmap.org/copyright",
+    "Overture": "https://docs.overturemaps.org/attribution/"
+  },
+  "generated": "2026-10-28T08:34:33.921689+00:00",
+  "osmTimestamp": "2026-10-23 (API map snapshot)",
+  "connectivitySource": {
+    "url": "https://api.openstreetmap.org/api/0.6/map?bbox=113.305,23.103,113.337,23.133",
+    "retrieved": "2026-10-27T07:45:26.315549+00:00",
+    "method": "All road ways refreshed atomically from the reviewed public XML snapshot, including newly split connections. Buildings, water relations and other non-road records retained.",
+    "matchedWays": 2990,
+    "unmatchedWayIds": [],
+    "taggedNodes": 999,
+    "sha256": "44416cdf913fbaba00519e450200fab7ab215eec2d41932a1abd1204cdb1b262",
+    "refreshedAt": "2026-10-27T08:18:34.778479+00:00",
+    "updatedGeometryWayIds": [
+      102592937,
+      194422197,
+      194748112,
+      299637364,
+      442084728,
+      449546093,
+      449549701,
+      538306199,
+      585606283,
+      603954444,
+      644869314,
+      848894528,
+      849765694,
+      1431170029,
+      1490536526,
+      1490536527,
+      1565582356,
+      1565582359
+    ],
+    "addedWayIds": [
+      1571237855,
+      1571873709,
+      1571873710,
+      1571873711,
+      1571873712,
+      1571873713,
+      1571873714,
+      1571873715,
+      1571873716,
+      1571873717,
+      1571873718,
+      1571873721,
+      1571873737,
+      1571873738,
+      1571873739,
+      1571873740,
+      1571873741,
+      1571873742,
+      1571873743
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "model": "ctf",
+    "seed": "osm/way/511404889/0",
+    "height": 530,
+    "heightSource": "reference:KPF",
+    "reference": "https://www.kpf.com/project/ctf-finance-centre",
+    "description": "退台塔身 · 陶土竖框"
+  },
+  {
+    "model": "ifc",
+    "seed": "overture/ebcbae5c-e7d2-4c9c-ba55-a7dd62155113/0",
+    "height": 438.6,
+    "heightSource": "CTBUH:architectural-height",
+    "reference": "https://wilkinsoneyre.com/projects/guangzhou-international-finance-center",
+    "description": "曲面三角塔身 · 斜交网格"
+  },
+  {
+    "model": "opera",
+    "seed": "overture/ab0b520c-05f1-4280-a640-ea203386401d/0",
+    "height": 43,
+    "heightSource": "estimate:reference-massing",
+    "reference": "https://www.zha.com/projects/architecture/guangzhou-opera-house",
+    "description": "双砾石外壳 · 近似重建"
+  },
+  {
+    "model": "museum",
+    "seed": "overture/0661c1a9-2dbe-4831-93ad-21ab4147c141/0",
+    "height": 45,
+    "heightSource": "reference:engineering-paper",
+    "reference": "https://cjournal.hep.com.cn/1005-0159/CN/PDF/10.15935/j.cnki.jggcs.202503.0023",
+    "description": "悬挑宝盒 · 深灰与红色凹槽"
+  },
+  {
+    "model": "library",
+    "seed": "overture/67e83358-a281-4cbd-978d-9428830bfd80/0",
+    "height": 50,
+    "heightSource": "reference:Nikken",
+    "reference": "https://www.nikken.co.jp/en/projects/cultural/guangzhou_library.html",
+    "description": "双体量 · 水平石材层次"
+  },
+  {
+    "model": "canton",
+    "seed": "overture/8a3ca89e-d721-4d1b-845d-945cbd7dd969/0",
+    "height": 600,
+    "heightSource": "reference:Arup",
+    "reference": "https://www.arup.com/globalassets/downloads/insights/a/arups-innovation-legacy/arup-innovation-legacy.pdf",
+    "description": "扭转镂空网架 · 观景舱与天线"
+  },
+  {
+    "model": "pearl",
+    "seed": "overture/5d15aae9-a875-4928-8136-a6e71d0cde3a/0",
+    "height": 309.6,
+    "heightSource": "reference:SOM",
+    "reference": "https://www.somchina.cn/projects/珠江城大厦/",
+    "description": "曲面幕墙 · 双层风口"
+  },
+  {
+    "model": "yingkai",
+    "seed": "overture/fb7ee680-c50a-463e-86b6-530b39dc6d89/0",
+    "height": 296.5,
+    "heightSource": "overture:height",
+    "reference": "https://www.archdaily.com/794935/r-and-f-yingkai-square-goettsch-partners",
+    "description": "切角塔身 · 金属竖向肌理"
+  },
+  {
+    "model": "leatop",
+    "seed": "overture/f5a0d339-2c00-4632-8ef4-62c25b87a560/0",
+    "height": 302.7,
+    "heightSource": "overture:height",
+    "reference": "https://fgp-atelier.com/projects/",
+    "description": "斜切冠部 · 玻璃塔身"
+  },
+  {
+    "model": "fuli",
+    "seed": "overture/cae83468-6e87-4089-977c-03c91e65a486/0",
+    "height": 243,
+    "heightSource": "overture:height",
+    "reference": "https://www.architectmagazine.com/project-gallery/r-f-center/",
+    "description": "内凹立面 · 水平层带 · 镂空冠部"
+  },
+  {
+    "model": "ifp",
+    "seed": "osm/way/926991930/0",
+    "height": 198,
+    "heightSource": "reference:CTBUH",
+    "reference": "https://www.skyscrapercenter.com/building/international-finance-place/5296",
+    "description": "双帆曲面 · 高低斜切冠部"
+  },
+  {
+    "model": "kaihua",
+    "seed": "overture/f05380cb-5b20-498d-85a3-dc77810bc376/0",
+    "height": 252,
+    "heightSource": "reference:issuer-disclosure",
+    "reference": "https://pdf.dfcfw.com/pdf/H2_AN202108171510613524_1.pdf",
+    "description": "竖向框架 · 顶部凹口 · 商业裙楼"
+  },
+  {
+    "model": "ritz",
+    "seed": "overture/bf208fc3-9595-4424-9851-a57e2f4ac584/0",
+    "height": 181.5,
+    "heightSource": "reference:CTBUH",
+    "reference": "https://www.skyscrapercenter.com/building/rf-ritz-carlton-hotel/3344",
+    "description": "弧形冠部 · 金属竖肋 · 低层裙楼"
+  },
+  {
+    "model": "gtspring",
+    "seed": "overture/122a79c8-342d-4f12-a9b2-418bc51ad991/0",
+    "height": 184.7,
+    "heightSource": "reference:SkyscraperPage",
+    "reference": "https://skyscraperpage.com/diagrams/?buildingID=2926",
+    "description": "春广场 · 弧形A塔与低层B塔"
+  },
+  {
+    "model": "gtsummer",
+    "seed": "overture/0768887d-1341-4dfd-a52a-050952ab5e80/0",
+    "height": 99,
+    "heightSource": "estimate:22-floors-times-4.5m",
+    "reference": "https://www.gzgaodezhidi.cn/",
+    "description": "夏广场 · 双体量与曲面幕墙 · 高度估算"
+  },
+  {
+    "model": "gtautumn",
+    "seed": "overture/cd0bcffd-2108-4524-a167-5584bef48db2/0",
+    "height": 99,
+    "heightSource": "estimate:22-floors-times-4.5m",
+    "reference": "https://www.xsjgcob.cn/",
+    "description": "秋广场 · E/F体量与水平层带 · 高度估算"
+  },
+  {
+    "model": "gtwinterNorth",
+    "seed": "osm/way/589994629/0",
+    "height": 206.8,
+    "heightSource": "reference:CTBUH",
+    "reference": "https://www.skyscrapercenter.com/guangzhou/gt-land-landmark-plaza-north-tower/11147/",
+    "description": "冬广场北塔 · 竖向分段与顶部框架"
+  },
+  {
+    "model": "gtwinterSouth",
+    "seed": "osm/way/589994630/0",
+    "height": 282.8,
+    "heightSource": "reference:CTBUH",
+    "reference": "https://www.skyscrapercenter.com/building/gt-land-landmark-plaza-south-tower/11148",
+    "description": "冬广场南塔 · 卓美亚综合体"
+  },
+  {
+    "model": "gtwinterWest",
+    "seed": "osm/way/589994628/0",
+    "height": 71.9,
+    "heightSource": "reference:CTBUH",
+    "reference": "https://www.skyscrapercenter.com/building/gt-land-landmark-plaza-west-tower/18126",
+    "description": "冬广场西侧低楼 · 平台层次"
+  },
+  {
+    "model": "youth",
+    "seed": "overture/21996fbf-f70f-427c-a984-48080c459f60/0",
+    "height": 34.5,
+    "heightSource": "estimate:reference-massing",
+    "reference": "https://www.54cn.net/channel/shaogongjianjie",
+    "description": "第二少年宫 · 弧形银色外墙与玻璃圆塔 · 高度待核"
+  }
+]

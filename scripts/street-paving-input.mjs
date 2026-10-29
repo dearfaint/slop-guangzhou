@@ -1,0 +1,11 @@
+import {readFileSync} from 'node:fs';
+import {groundRoadPaths,southAxisRoadSurfaces} from '../src/south-axis-layout.ts';
+import {isGroundRoad,hiddenUndergroundBuildings} from '../src/road-level.ts';
+import {parkRoadReplaced} from '../src/pearl-park-layout.ts';
+import {islandRoadReplaced} from '../src/haixinsha-layout.ts';
+import {tunnelData} from '../src/tunnel-data.ts';
+import {createRoadLayout} from '../src/road-layout.ts';
+import {forecourtSites} from '../src/forecourt-layout.ts';
+const read=p=>JSON.parse(readFileSync(new URL('../public/data/'+p,import.meta.url))),manifest=read('manifest.json'),data=manifest.tiles.map(t=>read(t.id+'.json'));
+const roads=[...new Map(data.flatMap(t=>t.roads).map(r=>[r.id+JSON.stringify(r.p),r])).values()].filter(r=>isGroundRoad(r)&&!parkRoadReplaced(r.id)&&!islandRoadReplaced(r.p,r.bridge));
+console.log(JSON.stringify({hiddenBuildings:[...hiddenUndergroundBuildings],forecourtPaving:forecourtSites.flatMap(s=>s.paving),tiles:manifest.tiles.map((t,i)=>({bounds:t.bounds,roads:data[i].roads.map(r=>r.id)})),roads:roads.map(r=>({...r,paths:groundRoadPaths(r),surfaces:tunnelData.roadSurfaces[r.id]?.p??southAxisRoadSurfaces.get(r.id)})),crossings:createRoadLayout(data).paint.filter(p=>p.kind==='crossing')}));

@@ -1,0 +1,14 @@
+import {readFileSync} from 'node:fs';
+import {buildTrafficGraph} from '../src/traffic-model.ts';
+import {createStreetLayout} from '../src/street-layout.ts';
+import {isGroundRoad,hiddenUndergroundBuildings} from '../src/road-level.ts';
+import {hiddenIslandBuildings} from '../src/haixinsha-layout.ts';
+import {parkHiddenBuildings} from '../src/pearl-park-layout.ts';
+import {forecourtSites} from '../src/forecourt-layout.ts';
+const root=new URL('../public/data/',import.meta.url),read=n=>JSON.parse(readFileSync(new URL(n,root),'utf8'));
+const tiles=read('manifest.json').tiles.map(t=>read(t.id+'.json'));
+const roads=[...new Map(tiles.flatMap(t=>t.roads).map(r=>[r.id+JSON.stringify(r.p),r])).values()].filter(isGroundRoad);
+const byId=new Map(roads.map(r=>[r.id,r]));const graph=buildTrafficGraph(roads);
+const junctions=[...graph.nodes.values()].flatMap(n=>{const names=[...new Set(n.outgoing.map(id=>byId.get(graph.edges.get(id).roadId)?.name).filter(Boolean))];return names.length>1?[{p:n.p,names}]:[];});
+const buildings=[...new Map(tiles.flatMap(t=>t.buildings).map(b=>[b.id+JSON.stringify(b.p),b])).values()].filter(b=>!hiddenUndergroundBuildings.has(b.id)&&!hiddenIslandBuildings.has(b.id)&&!parkHiddenBuildings.has(b.id));
+console.log(JSON.stringify({roads,buildings,junctions,lamps:createStreetLayout(tiles).lamps,sites:forecourtSites}));

@@ -1,0 +1,21 @@
+# Installed dependencies and generated output
+node_modules/
+.pnpm-store/
+dist/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+work/*
+!work/.gitkeep
+
+# Local configuration and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
