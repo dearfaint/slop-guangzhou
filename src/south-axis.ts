@@ -5,7 +5,7 @@ import {Group,Mesh,BufferGeometry,Float32BufferAttribute,Shape,Path,Vector2,Shap
 import {positionWorld,fract,step,max,mix,color} from 'three/tsl';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {southAxisData as data} from './south-axis-data.ts';
-import {bridgeHeight,nearestPath,mallExcavationRings,mallPlazaOuter,ellipseRing,centralMallBounds,southMallBounds,northMallBounds,westWellSpec,eastWellSpec,musicalFountainSpec,centralPromenade,northRotunda,northRotundaOpening} from './south-axis-layout.ts';
+import {northMallLinks,bridgeHeight,nearestPath,mallExcavationRings,mallPlazaOuter,ellipseRing,centralMallBounds,southMallBounds,northMallBounds,westWellSpec,eastWellSpec,musicalFountainSpec,centralPromenade,northRotunda,northRotundaOpening} from './south-axis-layout.ts';
 import {SlopTrees} from './slop-trees.ts';
 import {tunnelInterior} from './tunnels.ts';
 import {FOOT_TOP} from './road-level.ts';
@@ -277,6 +277,7 @@ export class SouthAxis {
   this.lampPools=new Mesh(mergeGeometries(pools,false)!,this.poolMaterial);pools.forEach(g=>g.dispose());this.lampPools.visible=false;this.root.add(this.lampPools);
 
   // --- Huacheng Square South Mall (花城汇南区) & Musical Fountain (音乐喷泉) ---
+  for(const link of northMallLinks)add(detailRibbon(link.p,link.w,link.y),mat(palette.path));
   const terracotta=mat('#9b6755'),ochre=mat('#d5a668'),crimson=mat('#b8342b');
   const [mx0,mz0,mx1,mz1]=centralMallBounds,[sx0,sz0,sx1,sz1]=southMallBounds,[nx0,nz0,nx1,nz1]=northMallBounds;
   const [fx,fz]=musicalFountainSpec.center;
@@ -541,11 +542,6 @@ export class SouthAxis {
   // Central square planter matrix on North Deck (3x3 dense grove + 4 side planters).
   for(const gx of [-294.5,-288.7,-283.0])for(const gz of [-300.5,-294.5,-288.5])mallTrees.push({x:gx,z:gz,height:10.5+((Math.abs(gx*3+gz))%3)});
   for(const [px,pz] of [[-305.8,-299.5],[-305.8,-289.5],[-271.6,-299.5],[-271.6,-289.5]])mallTrees.push({x:px,z:pz,height:9.2});
-  // Rim colonnade trees along both sides of the central sunken trench & grand staircase.
-  for(let z=-277;z<=-189;z+=7.5){
-   mallTrees.push({x:-308.4,z,height:9.5+((Math.abs(z))%3)});
-   mallTrees.push({x:-269.0,z,height:9.5+((Math.abs(z+2))%3)});
-  }
   // Dense park groves flanking the central trench, twin oval wells, and Musical Fountain.
   for(let x=-342;x<=-313;x+=7.5)for(let z=-276;z<=-132;z+=8.0){
    if(Math.hypot((x+350.4)/19,(z+231.5)/15)<1.08||Math.hypot(x+314,z+180)<11||Math.hypot((x+290)/34,(z+146.3)/23)<1.05)continue;

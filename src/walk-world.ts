@@ -1,4 +1,5 @@
 import { StreetSurface } from './street-surface.ts';
+import {createStreetLayout} from './street-layout.ts';
 import {activeStreetDetails} from './street-detail-layout.ts';
 import {activeForecourts} from './forecourt-layout.ts';
 import {createRoadDividers} from './road-dividers.ts';
@@ -105,6 +106,9 @@ export class WalkWorld {
       }
     };
     for(const detail of activeStreetDetails(data))if(detail.p)insert(detail.p);
+    const furniture=createStreetLayout(data);
+    for(const p of furniture.benches)insert([[[-1,-1],[1,-1],[1,1],[-1,1]].map(([x,z])=>[p.x+Math.cos(p.angle)*x*1.05+Math.sin(p.angle)*z*.35,p.z-Math.sin(p.angle)*x*1.05+Math.cos(p.angle)*z*.35] as Point)]);
+    for(const p of furniture.planters)insert([Array.from({length:16},(_,i)=>[p.x+Math.cos(i*Math.PI/8)*1.4,p.z+Math.sin(i*Math.PI/8)*1.4] as Point)]);
     for(const site of activeForecourts(data))for(const bed of site.beds)insert(bed.p);
     for(const bed of createTunnelGardens(data))insert(bed.p);
     for(const d of createRoadDividers(data)){

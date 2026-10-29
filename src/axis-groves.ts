@@ -5,6 +5,7 @@
 // positions are inferred, not surveyed.
 import { insidePolygon, segmentDistance } from './street-layout.ts';
 import { isFootway } from './curb.ts';
+import {inSouthAxisPlanting} from './south-axis-layout.ts';
 import { isVisibleRoad } from './road-level.ts';
 import type { StreetItem } from './street-layout.ts';
 import type { Point, TileData } from './types';
@@ -39,7 +40,7 @@ export function axisGroveTrees(data:TileData[]):StreetItem[]{
     const o=local(x0,x1,z0,z1);if(!o.roads.length)return;
     for(let x=Math.ceil(x0/spacing)*spacing;x<=x1;x+=spacing)for(let z=Math.ceil(z0/spacing)*spacing;z<=z1;z+=spacing){
       const p:Point=[x+(jitter(x,z)-.5)*spacing*.55,z+(jitter(z,x)-.5)*spacing*.55];
-      if(!accept(p)||!clear(p,o))continue;
+      if(!accept(p)||!clear(p,o)||inSouthAxisPlanting(...p))continue;
       // Mature canopy trees: 11–16 m, which SlopTrees scales to wide crowns that close over the paths.
       trees.push({x:p[0],z:p[1],angle:jitter(x+3,z)*Math.PI*2,height:11+jitter(x+1,z+1)*5,source:'inferred:park',reference});
     }

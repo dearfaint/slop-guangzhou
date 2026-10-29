@@ -158,3 +158,28 @@ test('sunken mall plaza, oval ramp wells and musical fountain are excavated and 
  assert.ok(Math.abs(h-.42)<.15,'walker reaches the north surface deck at +0.42 m');
  for(const group of groups)disposeTile(group);ground.geometry.dispose();material.dispose();model.dispose();
 });
+
+test('central sunken mall side walkways contain no planted tree instances and remain walkable',()=>{
+ const model=new SouthAxis();model.update(0,0,new Vector3(-288.7,60,-233));
+ const sites=[];
+ model.root.traverse(mesh=>{
+  if(!mesh.isInstancedMesh||!mesh.name.startsWith('Trees_'))return;
+  for(let i=0;i<mesh.count;i++){const m=mesh.instanceMatrix.array;sites.push({x:m[i*16+12],z:m[i*16+14]});}
+ });
+ try{
+  assert.ok(sites.some(p=>p.x< -312&&p.z> -276&&p.z< -190),'western park trees remain');
+  assert.ok(sites.some(p=>p.x> -265&&p.z> -276&&p.z< -190),'eastern park trees remain');
+  assert.ok(sites.some(p=>Math.abs(p.x+288.7)<.1&&Math.abs(p.z+294.5)<.1),'north deck planter trees remain');
+  const blocked=sites.filter(p=>p.z>=-280.88&&p.z<=-185.14&&((p.x>=-311.5&&p.x<=-306)||(p.x>=-271.4&&p.x<=-266)));
+  assert.deepEqual(blocked,[],'both side walkways stay free of tree trunks');
+  const world=new WalkWorld();world.setMap(tiles);
+  for(const x of [-308.4,-269]){
+   let p=[x,-280];
+   for(let z=-279;z<=-186;z++){
+    const next=world.move(p,0,1,.42,.45);
+    assert.ok(Math.abs(next[0]-x)<.01&&Math.abs(next[1]-z)<.01,`side walkway is blocked at ${x},${z}`);
+    assert.ok(Math.abs(world.groundHeight(...next)-.42)<.01);p=next;
+   }
+  }
+ }finally{model.dispose();}
+});

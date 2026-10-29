@@ -1,4 +1,6 @@
-import { CURB_RISE, lawnIndex } from './curb.ts';
+import {streetClearance} from './street-clearance.ts';
+import { siteLevel } from './curb.ts';
+import { StreetSurface } from './street-surface.ts';
 import { axisGroveTrees } from './axis-groves.ts';
 import {activeForecourts} from './forecourt-layout.ts';
 import {createRoadDividers,type RoadDivider} from './road-dividers.ts';
@@ -24,7 +26,8 @@ export class Streets {
   setMap(data:TileData[]) {
     this.clear();this.layout=createStreetLayout(data);
     // Roadside lamps stand on the raised footway; those on lawns stay on the low park paths.
-    const lawns=lawnIndex(data.flatMap(t=>t.areas));this.layout.lamps=this.layout.lamps.map(p=>({...p,lift:lawns.has(p.x,p.z)?0:CURB_RISE}));this.lastCamera.set(Infinity,Infinity,Infinity);
+    const surface=new StreetSurface(data),ground=(p:StreetItem)=>siteLevel(p.x,p.z)??surface.height(p.x,p.z);
+    this.layout.lamps=this.layout.lamps.map(p=>({...p,lift:ground(p)-.4}));this.lastCamera.set(Infinity,Infinity,Infinity);
     const material=(color:string,metalness=0)=>{const m=new MeshStandardMaterial({color,roughness:.8,metalness});this.materials.push(m);return m;};
     const metal=material('#505f60',.5),stone=material('#b9b5a8'),wood=material('#a18562'),flowers=material('#a15d7b');
     const matrix=(p:StreetItem,x:number,y:number,z:number,sx:number,sy:number,sz:number)=>new Matrix4().compose(new Vector3(p.x+Math.cos(p.angle)*x+Math.sin(p.angle)*z,y,p.z-Math.sin(p.angle)*x+Math.cos(p.angle)*z),new Quaternion().setFromAxisAngle(new Vector3(0,1,0),p.angle),new Vector3(sx,sy,sz));
@@ -51,19 +54,20 @@ export class Streets {
     for(const tone of [0,1])batch(new IcosahedronGeometry(1,1),material(tone?'#7d9358':'#466e46'),shrubs.filter((_,i)=>i%2===tone),p=>{const b=p as StreetItem&TunnelGarden;return matrix(p,0,.8,0,Math.min(.75,b.width*.38),.24,.95);});
     const reflectors=material('#f2ce72',.2);reflectors.emissive.set('#9a792c');reflectors.emissiveIntensity=.3;
     batch(new BoxGeometry(1,1,1),reflectors,gardens.filter(b=>b.kind==='median'),p=>{const b=p as StreetItem&TunnelGarden;return matrix(p,0,.63,b.length*.43,Math.min(.36,b.width*.35),.08,.1);});
-    const mapped=[...mappedTreeSites(data),...activeForecourts(data).flatMap(s=>s.beds.flatMap(b=>b.trees)),...axisGroveTrees(data)];this.mappedTrees=mapped.length;
+    const roadClear=streetClearance(data);
+    const mapped=[...mappedTreeSites(data),...activeForecourts(data).flatMap(s=>s.beds.flatMap(b=>b.trees)),...axisGroveTrees(data)].filter(p=>roadClear(p.x,p.z,.8,('y' in p?p.y??.18:.18)+p.height*1.5));this.mappedTrees=mapped.length;
     this.trees=new SlopTrees([...this.layout.trees,...this.layout.palms,...mapped]);for(const mesh of this.trees.meshes)this.root.add(mesh);
     batch(new CylinderGeometry(.085,.13,1,6),metal,this.layout.lamps,p=>matrix(p,0,.4+p.lift!+p.height/2,0,1,p.height,1));
     // Distant lenses stay emissive; nearby illumination comes from NightLights.
     this.bulb=material('#d8d6b9');this.bulb.emissive.set('#ffd68a');
     batch(streetLampHousing(),metal,this.layout.lamps,p=>matrix(p,0,p.height+.6+p.lift!,.35,1,1,1));
     batch(new BoxGeometry(1.2,.04,.48),this.bulb,this.layout.lamps,p=>matrix(p,0,p.height+.4+p.lift!,.35,1,1,1));
-    batch(new CylinderGeometry(1.4,1.1,.65,8),stone,this.layout.planters,p=>matrix(p,0,.65,0,1,1,1));
-    batch(new IcosahedronGeometry(1,0),flowers,this.layout.planters,p=>matrix(p,0,1.15,0,1.2,.45,1.2));
-    batch(hydrantGeometry(),material('#b8241e',.4),this.layout.lamps.filter((_,i)=>i%4===0),p=>matrix(p,1.2,.78+p.lift!,0,1,1,1));
-    batch(mailboxGeometry(),material('#183c7a',.35),this.layout.lamps.filter((_,i)=>i%8===0),p=>matrix(p,-1.2,.84+p.lift!,0,1,1,1));
-    batch(new BoxGeometry(2.1,.18,.7),wood,this.layout.benches,p=>matrix(p,0,.85,0,1,1,1));
-    batch(new BoxGeometry(1.6,.45,.45),stone,this.layout.benches,p=>matrix(p,0,.53,0,1,1,1));
+    batch(new CylinderGeometry(1.4,1.1,.65,8),stone,this.layout.planters,p=>matrix(p,0,ground(p)+.325,0,1,1,1));
+    batch(new IcosahedronGeometry(1,0),flowers,this.layout.planters,p=>matrix(p,0,ground(p)+.825,0,1.2,.45,1.2));
+    batch(hydrantGeometry(),material('#b8241e',.4),this.layout.lamps.filter((_,i)=>i%4===0),p=>matrix(p,1.2,ground({...p,x:p.x+Math.cos(p.angle)*1.2,z:p.z-Math.sin(p.angle)*1.2})+.425,0,1,1,1));
+    batch(mailboxGeometry(),material('#183c7a',.35),this.layout.lamps.filter((_,i)=>i%8===0),p=>matrix(p,-1.2,ground({...p,x:p.x-Math.cos(p.angle)*1.2,z:p.z+Math.sin(p.angle)*1.2})+.625,0,1,1,1));
+    batch(new BoxGeometry(2.1,.18,.7),wood,this.layout.benches,p=>matrix(p,0,ground(p)+.54,0,1,1,1));
+    batch(new BoxGeometry(1.6,.45,.45),stone,this.layout.benches,p=>matrix(p,0,ground(p)+.225,0,1,1,1));
   }
   update(night:number,cameraPosition:Vector3) {
     if(this.bulb)this.bulb.emissiveIntensity=Math.max(0,Math.min(1,night))*2.3;

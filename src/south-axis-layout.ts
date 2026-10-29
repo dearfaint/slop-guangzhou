@@ -87,7 +87,14 @@ const mallPassageLines=[
  },
 ];
 
+// Inferred links from the two mapped park paths to the authored north mall deck.
+// Stay on either side of the north sunken opening; rise gently over the last three metres.
+export const northMallLinks=[
+ {id:'osm/way/299795193/0',p:[[-262.7,-346.1],[-262.7,-327],[-262.7,-324],[-262.7,-323]] as Point[],w:2.6,y:[.28,.28,.42,.42]},
+ {id:'osm/way/299795195/0',p:[[-312.7,-346.5],[-312.7,-327],[-312.7,-324],[-312.7,-323]] as Point[],w:2.6,y:[.28,.28,.42,.42]},
+];
 export function southAxisHeight(x:number,z:number):number|undefined {
+ for(const link of northMallLinks){const q=nearestPath(x,z,link.p,link.y);if(q.distance<=link.w/2)return q.y;}
  if(inPolygon(x,z,centralPromenade)&&!inRing(x,z,northRotundaOpening))return .42;
  if(inPolygon(x,z,southAxisData.bridge))return bridgeHeight(z);
  if(inPolygon(x,z,southAxisData.plaza))return .42;
@@ -157,7 +164,10 @@ export const southAxisRoadSurfaces=new Map<string,Point[][][]>([
 ]);
 const roadPaths=new Map(southAxisData.roadReplacements.map(r=>[r.id,r.lines]));
 const tunnelGroundPaths=new Map(tunnelData.routes.map(r=>{const paths:Point[][]=[];if(!r.covered){let path:Point[]=[];for(let i=0;i<r.p.length;i++){if(r.y[i]>.349)path.push(r.p[i]);else{if(path.length>1)paths.push(path);path=[];}}if(path.length>1)paths.push(path);}return [r.id,paths] as const;}));
-export function groundRoadPaths(road:Road):Point[][] {return southAxisTrafficRoads.has(road.id)?[]:tunnelGroundPaths.get(road.id)??tunnelData.roadSurfaces[road.id]?.lines??roadPaths.get(road.id)??[road.p];}
+export function groundRoadPaths(road:Road):Point[][] {
+ const link=northMallLinks.find(l=>l.id===road.id);if(link)return [[...road.p,...link.p.slice(1)]];
+ return southAxisTrafficRoads.has(road.id)?[]:tunnelGroundPaths.get(road.id)??tunnelData.roadSurfaces[road.id]?.lines??roadPaths.get(road.id)??[road.p];
+}
 const areaSurfaces=new Map(southAxisData.areaReplacements.map(a=>[a.key,a.p]));
 export function southAxisAreaSurfaces(area:Area){
  const key=`${area.p[0][0][0]}:${area.p[0][0][1]}:${area.name}`;

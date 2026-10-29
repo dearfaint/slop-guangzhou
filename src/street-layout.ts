@@ -1,3 +1,7 @@
+import {streetClearance} from './street-clearance.ts';
+import {activeForecourts} from './forecourt-layout.ts';
+import {createTunnelGardens} from './tunnel-gardens.ts';
+import {createRoadDividers} from './road-dividers.ts';
 import { inNorthGrove } from './axis-groves.ts';
 import { inPearlPark } from './pearl-park-layout.ts';
 import { isHaixinshaDetailed, hiddenIslandBuildings } from './haixinsha-layout.ts';
@@ -31,6 +35,7 @@ const jitter=(x:number,z:number)=>{const n=Math.sin(x*12.9898+z*78.233)*43758.54
 const priority=(p:StreetItem)=>Math.hypot((p.x+300)*1.5,p.z+300);
 function unique<T>(items:T[],key:(v:T)=>string) {return [...new Map(items.map(i=>[key(i),i])).values()];}
 export function createStreetLayout(tiles:TileData[]):StreetLayout {
+  const roadClear=streetClearance(tiles);
   const buildings=unique(tiles.flatMap(t=>t.buildings).filter(b=>!hiddenIslandBuildings.has(b.id)&&!hiddenUndergroundBuildings.has(b.id)),b=>b.id+JSON.stringify(b.p));
   const areas=unique(tiles.flatMap(t=>t.areas),a=>JSON.stringify(a.p));
   const parks=areas.filter(a=>a.kind==='park');
@@ -48,6 +53,8 @@ export function createStreetLayout(tiles:TileData[]):StreetLayout {
   };
   for(const b of buildings)index({rings:b.p,radius:4},b.p.flat());
   for(const a of areas.filter(a=>a.kind==='water'))index({rings:a.p,radius:4},a.p.flat());
+  const beds=[...activeForecourts(tiles).flatMap(s=>s.beds.map(b=>b.p)),...createTunnelGardens(tiles).map(b=>b.p),...createRoadDividers(tiles).map(b=>[[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>[b.x+b.dx*b.length/2*u-b.dz*b.width/2*v,b.z+b.dz*b.length/2*u+b.dx*b.width/2*v] as Point)).map(p=>[p])];
+  for(const p of beds)index({rings:p,radius:1.8},p.flat());
   for(const r of roads)for(let i=1;i<r.p.length;i++)index({a:r.p[i-1],b:r.p[i],radius:r.w/2+2},[r.p[i-1],r.p[i]]);
   for(const r of treeRows)for(let i=1;i<r.p.length;i++)index({a:r.p[i-1],b:r.p[i],radius:10},[r.p[i-1],r.p[i]]);
   const clear=(p:Point,margin=0)=>!inPearlPark(...p)&&!inSouthAxisPlanting(...p)&&!isHaixinshaDetailed(...p)&&!(cells.get(Math.floor(p[0]/cellSize)+','+Math.floor(p[1]/cellSize))??[]).some(o=>{
@@ -68,7 +75,7 @@ export function createStreetLayout(tiles:TileData[]):StreetLayout {
     for(let x=Math.ceil(Math.min(...xs)/19)*19;x<Math.max(...xs);x+=19)for(let z=Math.ceil(Math.min(...zs)/19)*19;z<Math.max(...zs);z+=19) {
       const p:Point=[x+(jitter(x,z)-.5)*5,z+(jitter(z,x)-.5)*5];
       // The Huacheng Square north grove (axis-groves.ts) plants this park densely instead.
-      if(!insidePolygon(p,park.p)||!clear(p,1)||inNorthGrove(...p))continue;
+      if(!insidePolygon(p,park.p)||!clear(p,1)||inNorthGrove(...p)||!roadClear(...p,.8,18))continue;
       if(park.p.some(r=>r.some((a,i)=>segmentDistance(p,a,r[(i+1)%r.length])<4)))continue;
       candidates.push({x:p[0],z:p[1],angle:jitter(x+2,z)*Math.PI*2,height:6+jitter(x,z)*4,source:'inferred:park',reference:park.name||'OSM park polygon'});
     }
@@ -86,7 +93,7 @@ export function createStreetLayout(tiles:TileData[]):StreetLayout {
       let distance=carry;
       for(;distance<length;distance+=spacing)for(const side of [-1,1]) {
         const offset=road.w/2+3.2,p:Point=[a[0]+dx*distance/length-dz/length*offset*side,a[1]+dz*distance/length+dx/length*offset*side];
-        if(!clear(p))continue;
+        if(!clear(p)||!roadClear(...p,1.8,foot?5.5:9))continue;
         lampCandidates.push({x:p[0],z:p[1],angle:Math.atan2(dx,dz)+(side===1?Math.PI:0),height:foot?4.5:8,source:'inferred:roadside',reference:road.id});
       }
       carry=distance-length;
@@ -101,7 +108,7 @@ export function createStreetLayout(tiles:TileData[]):StreetLayout {
     // Amenity positions remain inferred. Park furniture only beside mapped paths.
     if(item.height<5) {
       const p:Point=[item.x+Math.sin(item.angle)*5,item.z+Math.cos(item.angle)*5];
-      if(clear(p)&&parks.some(a=>insidePolygon(p,a.p))&&reserve(p,3)) {
+      if(clear(p)&&roadClear(...p,1.5,2)&&parks.some(a=>insidePolygon(p,a.p))&&reserve(p,3)) {
         const amenity={...item,x:p[0],z:p[1],angle:item.angle+Math.PI/2};
         if(benches.length<36&&lamps.length%3===0)benches.push(amenity);
         else if(planters.length<40&&lamps.length%4===0)planters.push(amenity);

@@ -9,10 +9,20 @@ import {forecourtSites,activeForecourts} from '../src/forecourt-layout.ts';
 import {Forecourts} from '../src/forecourts.ts';
 import {WalkWorld,insidePolygon} from '../src/walk-world.ts';
 import {segmentDistance} from '../src/street-layout.ts';
+import {surfacePassages} from '../src/road-level.ts';
 const root=new URL('../public/data/',import.meta.url),read=n=>JSON.parse(readFileSync(new URL(n,root),'utf8'));
 const data=read('manifest.json').tiles.map(t=>read(t.id+'.json'));
 const buildings=[...new Map(data.flatMap(t=>t.buildings).map(b=>[b.id,b])).values()];
 const roads=[...new Map(data.flatMap(t=>t.roads).map(r=>[r.id,r])).values()];
+test('surface-tagged riverside passages stay free of forecourt paving and planting',()=>{
+ for(const r of roads.filter(r=>surfacePassages.has(r.id)))for(let i=1;i<r.p.length;i++){
+  const a=r.p[i-1],b=r.p[i],length=Math.hypot(b[0]-a[0],b[1]-a[1]);
+  for(let d=0;d<=length;d+=2)for(const side of [-.45,0,.45]){
+   const x=a[0]+(b[0]-a[0])*d/length-(b[1]-a[1])/length*r.w*side,z=a[1]+(b[1]-a[1])*d/length+(b[0]-a[0])/length*r.w*side;
+   for(const s of forecourtSites)for(const p of [...s.paving,...s.border,...s.beds.map(b=>b.p)])assert.equal(insidePolygon(x,z,p),false,r.id);
+  }
+ }
+});
 test('forecourts cover ordinary blocks across the map and follow loaded buildings',()=>{
  assert.ok(forecourtSites.length>30);assert.equal(activeForecourts(data).length,forecourtSites.length);assert.deepEqual(activeForecourts([]),[]);
  for(const site of forecourtSites)assert.ok(buildings.some(b=>b.id===site.building));

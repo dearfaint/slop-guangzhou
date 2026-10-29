@@ -1,3 +1,4 @@
+import {streetClearance} from './street-clearance.ts';
 import {groundRoadPaths, southAxisHeight} from './south-axis-layout.ts';
 import {isGroundRoad,isVisibleRoad,bridgeRoadProfile,hiddenUndergroundBuildings,FOOT_TOP,ROAD_TOP} from './road-level.ts';
 import {insidePolygon} from './street-layout.ts';
@@ -50,5 +51,6 @@ export function createRoadDividers(data:TileData[]):RoadDivider[]{
    }
   }
  }
- cache.set(data,result);return result;
+ const clear=streetClearance(data),safe=result.filter(p=>clear.box(p,p.kind==='planting'?1.05:1.25));
+ cache.set(data,safe);return safe;
 }

@@ -1,3 +1,4 @@
+import {streetClearance} from './street-clearance.ts';
 import {tunnelData} from './tunnel-data.ts';
 import {groundRoadPaths,nearestPath} from './south-axis-layout.ts';
 import {isGroundRoad,hiddenUndergroundBuildings} from './road-level.ts';
@@ -69,5 +70,6 @@ export function createTunnelGardens(data:TileData[]):TunnelGarden[]{
   const d=segment(r.p[i-1],r.p[i+1],0);
   for(const side of [-1,1]){const offset=(r.w/2+2.2)*side;add({x:r.p[i][0]-d.dz*offset,z:r.p[i][1]+d.dx*offset,dx:d.dx,dz:d.dz,length:5.4,width:1.7},'rim');}
  }
- result.sort((a,b)=>a.x-b.x||a.z-b.z);cache.set(data,result);return result;
+ const clear=streetClearance(data),safe=result.filter(p=>clear.box(p,1.1));
+ safe.sort((a,b)=>a.x-b.x||a.z-b.z);cache.set(data,safe);return safe;
 }
